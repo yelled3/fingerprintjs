@@ -1,6 +1,8 @@
 fingerprintJS
 =============
 
+[![Build Status](https://travis-ci.org/Valve/fingerpintjs.png)](https://travis-ci.org/Valve/fingerprintjs)
+
 Fast browser fingerprint library. Written in pure JavaScript, no dependencies. 
 By default uses [Murmur hashing][murmur] and returns a 32bit integer number.
 Hashing function can be easily replaced.
@@ -22,9 +24,10 @@ No cookies are stored to identify a browser.
 It's worth noting that a mobile share of browsers is much more uniform, so fingerprinting should be used
 only as a supplementary identifying mechanism there.
 
-### Installation
+## Installation
 
 If you're on Rails, add this to your Gemfile
+
 `
 gem 'fingerprintjs-rails'
 `
@@ -40,18 +43,33 @@ After that you can add the file to sprockets:
 
 Otherwise, just copy the file to your js directory.
 
-### Usage
+## Usage
 
 ```javascript
 var fingerprint = new Fingerprint().get();
 ```
 
-Using custom hashing function
+### Using custom hashing function
 
 ``` javascript
 var hasher = new function(value, seed){ return value.length % seed; }
 var fingerprint = new Fingerprint(hasher).get();
 ```
+
+## Running specs
+
+Running specs manually is just opening the `specs/test_runner.html`
+
+
+Running specs from the command line or in CI requires [phantomjs][phantomjs] in your `PATH`
+
+```
+cd specs
+
+phantomjs lib/phantom-jasmine/run_jasmine_test.coffee test_runner.html
+```
+
+The example is in `run.sh` file.
 
 ### Licence
 
@@ -65,8 +83,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
-
 [mit]: http://www.opensource.org/licenses/mit-license.php
 [murmur]: http://en.wikipedia.org/wiki/MurmurHash
 [research]: https://panopticlick.eff.org/browser-uniqueness.pdf
+[phantomjs]: http://phantomjs.org/
