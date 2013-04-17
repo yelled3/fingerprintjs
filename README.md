@@ -1,5 +1,4 @@
-fingerprintJS
-=============
+# fingerprintjs
 
 [![Build Status](https://travis-ci.org/Valve/fingerpintjs.png)](https://travis-ci.org/Valve/fingerprintjs)
 
