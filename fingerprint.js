@@ -5,10 +5,10 @@
 * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
 */
 /*jslint browser: true, indent: 2 */
-(function() {
+(function(scope) {
   'use strict';
 
-  window.Fingerprint = function(hasher){
+  var Fingerprint = function(hasher){
     var nativeForEach = Array.prototype.forEach;
     var nativeMap = Array.prototype.map;
     this.each = function(obj, iterator, context) {
@@ -130,4 +130,6 @@
       return h1 >>> 0;
     }
   }
-})();
+
+  scope.Fingerprint = Fingerprint;
+})(window);
