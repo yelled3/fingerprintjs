@@ -70,6 +70,27 @@ phantomjs lib/phantom-jasmine/run_jasmine_test.coffee test_runner.html
 
 The example is in `run.sh` file.
 
+## Minification
+
+To minify the file I recommend using [uglifyjs][uglifyjs](requires node.js)
+If you don't have it installed, install it with:
+
+```
+npm -g install uglify-js
+```
+
+Then run the minification with:
+
+```
+uglifyjs fingerprint.js > fingerprint.min.js -mc
+```
+
+`-mc` tells uglifier to (m)angle and (c)ompress the input code.
+
+If you don't have node.js installed on your machine, you can create a minified version of the library with
+online services, such as [Google Closure compiler][closure]
+
+
 ### Licence
 
 This code is [MIT][mit] licenced:
@@ -86,3 +107,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [murmur]: http://en.wikipedia.org/wiki/MurmurHash
 [research]: https://panopticlick.eff.org/browser-uniqueness.pdf
 [phantomjs]: http://phantomjs.org/
+[uglifyjs]: https://github.com/mishoo/UglifyJS
+[closure]: http://closure-compiler.appspot.com
