@@ -13,7 +13,7 @@ Fingerprinting is a technique, outlined in [the research by Electronic Frontier 
 anonymously identifying a web browser with accuracy of up to 94%. 
 
 
-Browser is queried its agent string, screen resolution and color depth, language,
+Browser is queried its agent string, screen color depth, language,
 installed plugins with supported mime types, timezone offset and other capabilities, 
 such as local storage and session storage. Then these values are passed through a hashing function
 to produce a fingerprint that gives weak guarantees of uniqueness.
