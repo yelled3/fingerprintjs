@@ -47,6 +47,7 @@
     get: function(){
       var keys = [];
       keys.push(navigator.userAgent);
+      keys.push(navigator.language);
       keys.push([screen.height, screen.width, screen.colorDepth].join('x'));
       keys.push(new Date().getTimezoneOffset());
       keys.push(!!window.sessionStorage);
