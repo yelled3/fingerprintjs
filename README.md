@@ -23,6 +23,11 @@ No cookies are stored to identify a browser.
 It's worth noting that a mobile share of browsers is much more uniform, so fingerprinting should be used
 only as a supplementary identifying mechanism there.
 
+[Read more](http://valve.github.io/blog/2013/07/14/anonymous-browser-fingerprinting/)
+or
+[discuss or reddit](http://redd.it/1ic6ew)
+
+
 ## Installation
 
 If you're on Rails, add this to your Gemfile
