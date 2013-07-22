@@ -1,5 +1,5 @@
 /*
-* fingerprintJS 0.3 - Fast browser fingerprint library
+* fingerprintJS 0.3.1 - Fast browser fingerprint library
 * https://github.com/Valve/fingerprintjs
 * Copyright (c) 2013 Valentin Vasilyev (iamvalentin@gmail.com)
 * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -50,8 +50,8 @@
       keys.push(navigator.language);
       keys.push(screen.colorDepth);
       keys.push(new Date().getTimezoneOffset());
-      keys.push(!!window.sessionStorage);
-      keys.push(!!window.localStorage);
+      keys.push(!!scope.sessionStorage);
+      keys.push(this.hasLocalStorage());
       var pluginsString = this.map(navigator.plugins, function(p){
         var mimeTypes = this.map(p, function(mt){
           return [mt.type, mt.suffixes].join('~');
@@ -129,6 +129,15 @@
       h1 ^= h1 >>> 16;
 
       return h1 >>> 0;
+    },
+
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=781447
+    hasLocalStorage: function(){
+      try{
+        return !!scope.localStorage;
+      } catch(e) {
+        return true; // SecurityError when referencing it means it exists
+      }
     }
   }
 
