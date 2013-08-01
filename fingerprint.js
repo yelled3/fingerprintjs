@@ -40,7 +40,7 @@
     if(hasher){
       this.hasher = hasher;
     }
-  }
+  };
 
   Fingerprint.prototype = {
 
@@ -139,7 +139,7 @@
         return true; // SecurityError when referencing it means it exists
       }
     }
-  }
+  };
 
   scope.Fingerprint = Fingerprint;
 })(window);
