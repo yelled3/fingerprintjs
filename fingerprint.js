@@ -29,6 +29,8 @@
     };
     this.map = function(obj, iterator, context) {
       var results = [];
+      // Not using strict equality so that this acts as a
+      // shortcut to checking for `null` and `undefined`.
       if (obj == null) return results;
       if (nativeMap && obj.map === nativeMap) return obj.map(iterator, context);
       this.each(obj, function(value, index, list) {
@@ -40,7 +42,7 @@
     if(hasher){
       this.hasher = hasher;
     }
-  }
+  };
 
   Fingerprint.prototype = {
 
@@ -139,7 +141,7 @@
         return true; // SecurityError when referencing it means it exists
       }
     }
-  }
+  };
 
   scope.Fingerprint = Fingerprint;
 })(window);
