@@ -55,6 +55,9 @@
       keys.push(!!window.indexedDB);
       keys.push(typeof(document.body.addBehavior));
       keys.push(typeof(window.openDatabase));
+      keys.push(navigator.cpuClass);
+      keys.push(navigator.platform);
+      keys.push(navigator.doNotTrack);
       var pluginsString = this.map(navigator.plugins, function(p){
         var mimeTypes = this.map(p, function(mt){
           return [mt.type, mt.suffixes].join('~');
