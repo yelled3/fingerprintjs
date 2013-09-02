@@ -5,7 +5,7 @@
 Fast browser fingerprint library. Written in pure JavaScript, no dependencies. 
 By default uses [Murmur hashing][murmur] and returns a 32bit integer number.
 Hashing function can be easily replaced.
-Feather weight: only **843** bytes when gzipped.
+Feather weight: only **1.2** KB when gzipped.
 
 ## What is fingerprinting?
 
@@ -30,6 +30,14 @@ or
 
 ## Installation
 
+### Bower
+
+`
+bower install fingerprint
+`
+
+### Ruby-on-Rails
+
 If you're on Rails, add this to your Gemfile
 
 `
@@ -45,7 +53,9 @@ After that you can add the file to sprockets:
 //= require fingerprint
 `
 
-Otherwise, just copy the file to your js directory.
+### Manual
+
+Just copy the `fingerprint.js` file to your js directory.
 
 ## Usage
 
@@ -53,11 +63,25 @@ Otherwise, just copy the file to your js directory.
 var fingerprint = new Fingerprint().get();
 ```
 
+If you want to use [canvas fingerprinting][canvas_research] pass the `canvas` option
+```javascript
+var fingerprint = new Fingerprint({canvas: true}).get;
+```
+
+According to the above Pixel Perfect research, it should further increase the accuracy of
+fingerprinting.
+
 ### Using custom hashing function
 
 ``` javascript
-var hasher = new function(value, seed){ return value.length % seed; }
-var fingerprint = new Fingerprint(hasher).get();
+var my_hasher = new function(value, seed){ return value.length % seed; }
+var fingerprint = new Fingerprint({hasher: my_hasher}).get();
+```
+or pass the hashing function as is:
+
+``` javascript
+var my_hasher = new function(value, seed){ return value.length % seed; }
+var fingerprint = new Fingerprint(my_hasher).get();
 ```
 
 ## Running specs
@@ -114,3 +138,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [phantomjs]: http://phantomjs.org/
 [uglifyjs]: https://github.com/mishoo/UglifyJS
 [closure]: http://closure-compiler.appspot.com
+[canvas_research]: http://cseweb.ucsd.edu/~hovav/dist/canvas.pdf

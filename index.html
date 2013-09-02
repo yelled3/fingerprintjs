@@ -9,13 +9,19 @@
   <script src="fingerprint.js"></script>
 </head>
 <body>
-  <center>
-    <h3 style="margin-top: 60px">Your browser fingerprint is:</h3>
-    <h1 id="fp"></h1>
-  </center>
+  <div style="text-align: center;">
+    <h3 style="margin-top: 60px">Your browser fingerprint with canvas disabled is:</h3>
+    <h1 id="fp1"></h1>
+  </div>
+  <div style="text-align: center;">
+    <h3 style="margin-top: 20px">Your browser fingerprint with canvas enabled is:</h3>
+    <h1 id="fp2"></h1>
+  </div>
   <script>
-    var fp = new Fingerprint();
-    document.getElementById('fp').innerHTML = fp.get();
+    var fp1 = new Fingerprint();
+    var fp2 = new Fingerprint({canvas: true});
+    document.getElementById('fp1').innerHTML = fp1.get();
+    document.getElementById('fp2').innerHTML = fp2.get();
   </script>
 </body>
 </html>
