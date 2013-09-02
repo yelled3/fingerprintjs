@@ -71,6 +71,13 @@ var fingerprint = new Fingerprint({canvas: true}).get;
 According to the above Pixel Perfect research, it should further increase the accuracy of
 fingerprinting.
 
+*Note for IE9:* in order to use the canvas fingerprinting on IE9, the html must have a valid
+html5 declaration:
+
+```
+<!DOCTYPE html>
+```
+
 ### Using custom hashing function
 
 ``` javascript
