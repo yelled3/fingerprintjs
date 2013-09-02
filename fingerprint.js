@@ -1,5 +1,5 @@
 /*
-* fingerprintJS 0.4 - Fast browser fingerprint library
+* fingerprintJS 0.4.1 - Fast browser fingerprint library
 * https://github.com/Valve/fingerprintjs
 * Copyright (c) 2013 Valentin Vasilyev (iamvalentin@gmail.com)
 * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -162,7 +162,7 @@
       var canvas = document.createElement('canvas');
       var ctx = canvas.getContext('2d');
       // https://www.browserleaks.com/canvas#how-does-it-work
-      var txt = 'valve.github.io';
+      var txt = 'http://valve.github.io';
       ctx.textBaseline = "top";
       ctx.font = "14px 'Arial'";
       ctx.textBaseline = "alphabetic";
