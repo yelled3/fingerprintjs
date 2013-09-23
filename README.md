@@ -36,6 +36,13 @@ or
 bower install fingerprint
 `
 
+### NPM
+
+`
+npm install fingerprintjs
+`
+_note the trailing *js* in the name_
+
 ### Ruby-on-Rails
 
 If you're on Rails, add this to your Gemfile
