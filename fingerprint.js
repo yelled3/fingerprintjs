@@ -176,5 +176,8 @@
     }
   };
 
+  if (typeof module === 'object' && typeof exports === 'object') {
+    module.exports = Fingerprint;
+  }
   scope.Fingerprint = Fingerprint;
 })(window);
