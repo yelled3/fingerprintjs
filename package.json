@@ -1,5 +1,5 @@
 {
   "name": "fingerprintjs",
   "version": "0.4.2",
-  "main": ["fingerprint.js"]
+  "main": "fingerprint.js"
 }
