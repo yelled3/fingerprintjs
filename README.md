@@ -99,7 +99,7 @@ In IE (surprise) it is not possible to just query the list of plugins, their mim
 Instead, one must use special probing code to detect each individual plugin, because
 all plugins are ActiveX controls in IE.
 
-If you want to make the IE plugins further diversify the fingerprinting process, pass the `ie_activex: true` option.
+If you want to query the IE plugins info to further diversify the fingerprinting process, pass the `ie_activex: true` option.
 
 This will detect following plugins:
 
