@@ -70,11 +70,10 @@ Just copy the `fingerprint.js` file to your js directory.
 var fingerprint = new Fingerprint().get();
 ```
 
-If you want to use [canvas fingerprinting][canvas_research] pass the `canvas` option
+If you want to use [canvas fingerprinting][canvas_research] pass the `canvas: true` option
 ```javascript
 var fingerprint = new Fingerprint({canvas: true}).get;
 ```
-
 According to the above Pixel Perfect research, it should further increase the accuracy of
 fingerprinting.
 
@@ -84,6 +83,34 @@ html5 declaration:
 ```
 <!DOCTYPE html>
 ```
+
+If you want to use screen resolution in calculatin the fingerprint,  pass the `screen_resolution: true` option
+```javascript
+var fingerprint = new Fingerprint({screen_resolution: true}).get;
+```
+
+### IE 6, IE 7, IE 8, IE 9, IE 10, IE 11
+
+Detecting the plugins information is very important in building the fingerprint.
+In IE (surprise) it is not possible to just query the list of plugins, their mime types, etc.
+Instead, one must use special probing code to detect each individual plugin, because
+all plugins are ActiveX controls in IE.
+
+If you want to make the IE plugins further diversify the fingerprinting process, pass the `ie_activex: true` option.
+
+This will detect following plugins:
+
+# Adobe Reader
+# Adobe Flash Player
+# Apple QuickTime
+# Real player (all versions)
+# Shockwave player
+# Windows Media Player
+# Microsoft Silverlight
+# Skype ClickToCall
+
+Note that this process is safe for other browsers, and the `ie_activex` options will be ignored.
+
 
 ### Using custom hashing function
 

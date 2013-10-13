@@ -4,16 +4,20 @@
 * Copyright (c) 2013 Valentin Vasilyev (iamvalentin@gmail.com)
 * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
 */
-/*jslint browser: true, indent: 2 */
-(function(scope) {
+/*jslint browser: true, indent: 2, maxerr: 50, maxlen: 120 */
+(function (scope) {
   'use strict';
 
-  var Fingerprint = function(options){
-    var nativeForEach = Array.prototype.forEach;
-    var nativeMap = Array.prototype.map;
-    this.each = function(obj, iterator, context) {
-      if(obj === null) return;
-      if(nativeForEach && obj.forEach === nativeForEach) {
+  var Fingerprint = function (options) {
+    var nativeForEach, nativeMap;
+    nativeForEach = Array.prototype.forEach;
+    nativeMap = Array.prototype.map;
+
+    this.each = function (obj, iterator, context) {
+      if (obj === null) {
+        return;
+      }
+      if (nativeForEach && obj.forEach === nativeForEach) {
         obj.forEach(iterator, context);
       } else if (obj.length === +obj.length) {
         for (var i = 0, l = obj.length; i < l; i++) {
@@ -27,6 +31,7 @@
         }
       }
     };
+
     this.map = function(obj, iterator, context) {
       var results = [];
       // Not using strict equality so that this acts as a
@@ -38,7 +43,8 @@
       });
       return results;
     };
-    if(typeof options == 'object'){
+
+    if (typeof options == 'object'){
       this.hasher = options.hasher;
       this.screen_resolution = options.screen_resolution;
       this.canvas = options.canvas;
@@ -54,8 +60,11 @@
       keys.push(navigator.userAgent);
       keys.push(navigator.language);
       keys.push(screen.colorDepth);
-      if (this.screen_resolution){
-        keys,push(screen.width + 'x' + screen.height);
+      if (this.screen_resolution) {
+        var resolution = this.getScreenResolution();
+        if (typeof resolution !== 'undefined'){ // headless browsers, such as phantomjs
+          keys.push(this.getScreenResolution().join('x'));
+        }
       }
       keys.push(new Date().getTimezoneOffset());
       keys.push(this.hasSessionStorage());
@@ -143,7 +152,7 @@
     },
 
     // https://bugzilla.mozilla.org/show_bug.cgi?id=781447
-    hasLocalStorage: function(){
+    hasLocalStorage: function () {
       try{
         return !!scope.localStorage;
       } catch(e) {
@@ -151,7 +160,7 @@
       }
     },
     
-    hasSessionStorage: function(){
+    hasSessionStorage: function () {
       try{
         return !!scope.sessionStorage;
       } catch(e) {
@@ -159,12 +168,12 @@
       }
     },
 
-    isCanvasSupported: function(){
+    isCanvasSupported: function () {
       var elem = document.createElement('canvas');
       return !!(elem.getContext && elem.getContext('2d'));
     },
 
-    isIE: function(){
+    isIE: function () {
       if(navigator.appName === 'Microsoft Internet Explorer') {
         return true;
       } else if(navigator.appName === 'Netscape' && /Trident/.test(navigator.userAgent)){// IE 11
@@ -173,7 +182,7 @@
       return false;
     },
 
-    getPluginsString: function(){
+    getPluginsString: function () {
       if(this.isIE()){
         return this.getIEPluginsString();
       } else {
@@ -181,8 +190,8 @@
       }
     },
 
-    getRegularPluginsString: function(){
-      return this.map(navigator.plugins, function(p){
+    getRegularPluginsString: function () {
+      return this.map(navigator.plugins, function (p) {
         var mimeTypes = this.map(p, function(mt){
           return [mt.type, mt.suffixes].join('~');
         }).join(',');
@@ -190,7 +199,7 @@
       }, this).join(';');
     },
 
-    getIEPluginsString: function(){
+    getIEPluginsString: function () {
       var names = ['ShockwaveFlash.ShockwaveFlash',//flash plugin
         'AcroPDF.PDF', // Adobe PDF reader 7+
         'PDF.PdfCtrl', // Adobe PDF reader 6 and earlier, brrr
@@ -220,7 +229,11 @@
       }
     },
 
-    getCanvasFingerprint: function(){
+    getScreenResolution: function () {
+      return [screen.height, screen.width];
+    },
+
+    getCanvasFingerprint: function () {
       var canvas = document.createElement('canvas');
       var ctx = canvas.getContext('2d');
       // https://www.browserleaks.com/canvas#how-does-it-work
@@ -237,6 +250,7 @@
       return canvas.toDataURL();
     }
   };
+
 
   if (typeof module === 'object' && typeof exports === 'object') {
     module.exports = Fingerprint;

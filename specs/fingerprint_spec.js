@@ -52,6 +52,7 @@ describe("Fingerprint", function(){
       expect(fp.getCanvasFingerprint).toHaveBeenCalled();
     });
 
+
     it('Does not try to use canvas fingerprinting when not told to(version 1)', function(){
       var fp = new Fingerprint({canvas: false});
       spyOn(fp, 'getCanvasFingerprint');
@@ -64,6 +65,20 @@ describe("Fingerprint", function(){
       spyOn(fp, 'getCanvasFingerprint');
       fp.get();
       expect(fp.getCanvasFingerprint).not.toHaveBeenCalled();
+    });
+
+    it('Calculates fingerprint accessing screen resolution if it is said to do so', function(){
+      var fp = new Fingerprint({screen_resolution: true});
+      spyOn(fp, 'getScreenResolution');
+      fp.get();
+      expect(fp.getScreenResolution).toHaveBeenCalled();
+    });
+
+    it('Does not try to use screen resolution when not told to', function(){
+      var fp = new Fingerprint();
+      spyOn(fp, 'getScreenResolution');
+      fp.get();
+      expect(fp.getScreenResolution).not.toHaveBeenCalled();
     });
 
     it("Returns a number as a fingerprint value when used with a built-in hashing function", function(){
