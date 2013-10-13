@@ -103,14 +103,14 @@ If you want to query the IE plugins info to further diversify the fingerprinting
 
 This will detect following plugins:
 
-# Adobe Reader
-# Adobe Flash Player
-# Apple QuickTime
-# Real player (all versions)
-# Shockwave player
-# Windows Media Player
-# Microsoft Silverlight
-# Skype ClickToCall
+- Adobe Reader
+- Adobe Flash Player
+- Apple QuickTime
+- Real player (all versions)
+- Shockwave player
+- Windows Media Player
+- Microsoft Silverlight
+- Skype ClickToCall
 
 Note that this process is safe for other browsers, and the `ie_activex` options will be ignored.
 
