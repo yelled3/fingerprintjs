@@ -84,14 +84,17 @@ html5 declaration:
 <!DOCTYPE html>
 ```
 
-If you want to use screen resolution in calculatin the fingerprint,  pass the `screen_resolution: true` option
+
+If you want to use the screen resolution in calculating the fingerprint,  pass the `screen_resolution: true` option
 ```javascript
 var fingerprint = new Fingerprint({screen_resolution: true}).get;
 ```
 
+
 ### IE 6, IE 7, IE 8, IE 9, IE 10, IE 11
 
 Detecting the plugins information is very important in building the fingerprint.
+
 In IE (surprise) it is not possible to just query the list of plugins, their mime types, etc.
 Instead, one must use special probing code to detect each individual plugin, because
 all plugins are ActiveX controls in IE.
