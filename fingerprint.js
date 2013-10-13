@@ -1,5 +1,5 @@
 /*
-* fingerprintJS 0.4.3 - Fast browser fingerprint library
+* fingerprintJS 0.5.0 - Fast browser fingerprint library
 * https://github.com/Valve/fingerprintjs
 * Copyright (c) 2013 Valentin Vasilyev (iamvalentin@gmail.com)
 * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -40,19 +40,23 @@
     };
     if(typeof options == 'object'){
       this.hasher = options.hasher;
+      this.screen_resolution = options.screen_resolution;
       this.canvas = options.canvas;
+      this.ie_activex = options.ie_activex;
     } else if(typeof options == 'function'){
       this.hasher = options;
     }
   };
 
   Fingerprint.prototype = {
-
     get: function(){
       var keys = [];
       keys.push(navigator.userAgent);
       keys.push(navigator.language);
       keys.push(screen.colorDepth);
+      if (this.screen_resolution){
+        keys,push(screen.width + 'x' + screen.height);
+      }
       keys.push(new Date().getTimezoneOffset());
       keys.push(this.hasSessionStorage());
       keys.push(this.hasLocalStorage());
@@ -62,13 +66,7 @@
       keys.push(navigator.cpuClass);
       keys.push(navigator.platform);
       keys.push(navigator.doNotTrack);
-      var pluginsString = this.map(navigator.plugins, function(p){
-        var mimeTypes = this.map(p, function(mt){
-          return [mt.type, mt.suffixes].join('~');
-        }).join(',');
-        return [p.name, p.description, mimeTypes].join('::');
-      }, this).join(';');
-      keys.push(pluginsString);
+      keys.push(this.getPluginsString());
       if(this.canvas && this.isCanvasSupported()){
         keys.push(this.getCanvasFingerprint());
       }
@@ -164,6 +162,62 @@
     isCanvasSupported: function(){
       var elem = document.createElement('canvas');
       return !!(elem.getContext && elem.getContext('2d'));
+    },
+
+    isIE: function(){
+      if(navigator.appName === 'Microsoft Internet Explorer') {
+        return true;
+      } else if(navigator.appName === 'Netscape' && /Trident/.test(navigator.userAgent)){// IE 11
+        return true;
+      }
+      return false;
+    },
+
+    getPluginsString: function(){
+      if(this.isIE()){
+        return this.getIEPluginsString();
+      } else {
+        return this.getRegularPluginsString();
+      }
+    },
+
+    getRegularPluginsString: function(){
+      return this.map(navigator.plugins, function(p){
+        var mimeTypes = this.map(p, function(mt){
+          return [mt.type, mt.suffixes].join('~');
+        }).join(',');
+        return [p.name, p.description, mimeTypes].join('::');
+      }, this).join(';');
+    },
+
+    getIEPluginsString: function(){
+      var names = ['ShockwaveFlash.ShockwaveFlash',//flash plugin
+        'AcroPDF.PDF', // Adobe PDF reader 7+
+        'PDF.PdfCtrl', // Adobe PDF reader 6 and earlier, brrr
+        'QuickTime.QuickTime', // QuickTime
+        // 5 versions of real players
+        'rmocx.RealPlayer G2 Control',
+        'rmocx.RealPlayer G2 Control.1',
+        'RealPlayer.RealPlayer(tm) ActiveX Control (32-bit)',
+        'RealVideo.RealVideo(tm) ActiveX Control (32-bit)',
+        'RealPlayer',
+        'SWCtl.SWCtl', // ShockWave player
+        'WMPlayer.OCX', // Windows media player
+        'AgControl.AgControl', // Silverlight
+        'Skype.Detection'];
+      if(this.ie_activex && scope.ActiveXObject){
+        // starting to detect plugins in IE
+        return this.map(names, function(name){
+          try{
+            new ActiveXObject(name);
+            return name;
+          } catch(e){
+            return null;
+          }
+        }).join(';');
+      } else {
+        return ""; // behavior prior version 0.5.0, not breaking backwards compat.
+      }
     },
 
     getCanvasFingerprint: function(){
