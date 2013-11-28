@@ -72,7 +72,7 @@ var fingerprint = new Fingerprint().get();
 
 If you want to use [canvas fingerprinting][canvas_research] pass the `canvas: true` option
 ```javascript
-var fingerprint = new Fingerprint({canvas: true}).get;
+var fingerprint = new Fingerprint({canvas: true}).get();
 ```
 According to the above Pixel Perfect research, it should further increase the accuracy of
 fingerprinting.
@@ -87,7 +87,7 @@ html5 declaration:
 
 If you want to use the screen resolution in calculating the fingerprint,  pass the `screen_resolution: true` option
 ```javascript
-var fingerprint = new Fingerprint({screen_resolution: true}).get;
+var fingerprint = new Fingerprint({screen_resolution: true}).get();
 ```
 
 
