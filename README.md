@@ -118,13 +118,13 @@ Note that this process is safe for other browsers, and the `ie_activex` options 
 ### Using custom hashing function
 
 ``` javascript
-var my_hasher = new function(value, seed){ return value.length % seed; }
+var my_hasher = new function(value, seed){ return value.length % seed; };
 var fingerprint = new Fingerprint({hasher: my_hasher}).get();
 ```
 or pass the hashing function as is:
 
 ``` javascript
-var my_hasher = new function(value, seed){ return value.length % seed; }
+var my_hasher = new function(value, seed){ return value.length % seed; };
 var fingerprint = new Fingerprint(my_hasher).get();
 ```
 
@@ -143,7 +143,12 @@ phantomjs lib/phantom-jasmine/run_jasmine_test.coffee test_runner.html
 
 The example is in `run.sh` file.
 
-## Minification
+## Building
+
+To build the project, run `grunt` command. This will run the jshint and uglify the code into `build/fingerprint.min.js`.
+Running specs with grunt is not implemented but is on my todo list.
+
+### Manual minification
 
 To minify the file I recommend using [uglifyjs][uglifyjs](requires node.js)
 If you don't have it installed, install it with:

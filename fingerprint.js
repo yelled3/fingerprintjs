@@ -4,7 +4,6 @@
 * Copyright (c) 2013 Valentin Vasilyev (iamvalentin@gmail.com)
 * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
 */
-/*jslint browser: true, indent: 2, maxerr: 50, maxlen: 120 */
 (function (scope) {
   'use strict';
 
