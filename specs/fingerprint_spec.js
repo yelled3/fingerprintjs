@@ -20,7 +20,7 @@ describe("Fingerprint", function(){
     });
 
     it("Accepts a custom hasing function as options argument", function(){
-      var hasher = function(input){return 31;}
+      var hasher = function(){return 31;}
       expect(new Fingerprint({hasher: hasher})).not.toBeNull();
     });
   });
@@ -28,7 +28,7 @@ describe("Fingerprint", function(){
   describe("#get", function(){
     it("Calculates fingerprint with built-in hashing if no custom hashing is given", function(){
       var fingerprint = new Fingerprint;
-      spyOn(fingerprint, 'murmurhash3_32_gc');      
+      spyOn(fingerprint, 'murmurhash3_32_gc');
       fingerprint.get();
       expect(fingerprint.murmurhash3_32_gc).toHaveBeenCalled();
     });
@@ -61,7 +61,7 @@ describe("Fingerprint", function(){
     });
 
     it('Does not try to use canvas fingerprinting when not told to(version 2)', function(){
-      var fp = new Fingerprint();
+      var fp = new Fingerprint;
       spyOn(fp, 'getCanvasFingerprint');
       fp.get();
       expect(fp.getCanvasFingerprint).not.toHaveBeenCalled();
@@ -75,7 +75,7 @@ describe("Fingerprint", function(){
     });
 
     it('Does not try to use screen resolution when not told to', function(){
-      var fp = new Fingerprint();
+      var fp = new Fingerprint;
       spyOn(fp, 'getScreenResolution');
       fp.get();
       expect(fp.getScreenResolution).not.toHaveBeenCalled();
@@ -89,6 +89,13 @@ describe("Fingerprint", function(){
     it('Returns a string from getCanvasFingerprint function', function(){
       var fp = new Fingerprint({canvas: true});
       expect(fp.getCanvasFingerprint()).toBeA('string');
+    });
+
+    it('Does not fail when document.body is null', function(){
+      var body = document.body.parentNode.removeChild(document.body);
+      var fingerprint = new Fingerprint;
+      expect(fingerprint.get()).toBeA('number');
+      document.body = body;
     });
   });
 });
