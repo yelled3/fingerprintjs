@@ -10,7 +10,8 @@
   else if (typeof define === 'function' && define.amd) { define(definition); }
   else { context[name] = definition(); }
 })('Fingerprint', this, function () {
-
+  'use strict';
+  
   var Fingerprint = function (options) {
     var nativeForEach, nativeMap;
     nativeForEach = Array.prototype.forEach;
