@@ -4,8 +4,12 @@
 * Copyright (c) 2013 Valentin Vasilyev (iamvalentin@gmail.com)
 * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
 */
-(function (scope) {
-  'use strict';
+
+;(function (name, context, definition) {
+  if (typeof module !== 'undefined' && module.exports) { module.exports = definition(); }
+  else if (typeof define === 'function' && define.amd) { define(definition); }
+  else { context[name] = definition(); }
+})('Fingerprint', this, function () {
 
   var Fingerprint = function (options) {
     var nativeForEach, nativeMap;
@@ -256,8 +260,6 @@
   };
 
 
-  if (typeof module === 'object' && typeof exports === 'object') {
-    module.exports = Fingerprint;
-  }
-  scope.Fingerprint = Fingerprint;
-})(window);
+  return Fingerprint;
+
+});
