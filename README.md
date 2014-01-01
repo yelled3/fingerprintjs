@@ -90,6 +90,10 @@ If you want to use the screen resolution in calculating the fingerprint,  pass t
 var fingerprint = new Fingerprint({screen_resolution: true}).get();
 ```
 
+### Incognito mode (Chrome) or Private mode (Firefox)
+
+Fingerprint generates identical output in regular and private modes, i.e. the reporting will identify a private mode browser as usual.
+
 
 ### IE 6, IE 7, IE 8, IE 9, IE 10, IE 11
 
