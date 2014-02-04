@@ -1,7 +1,7 @@
 /*
-* fingerprintJS 0.5.2 - Fast browser fingerprint library
+* fingerprintJS 0.5.3 - Fast browser fingerprint library
 * https://github.com/Valve/fingerprintjs
-* Copyright (c) 2013 Valentin Vasilyev (iamvalentin@gmail.com)
+* Copyright (c) 2013 Valentin Vasilyev (valentin.vasilyev@outlook.com)
 * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
 */
 
@@ -163,7 +163,7 @@
     // https://bugzilla.mozilla.org/show_bug.cgi?id=781447
     hasLocalStorage: function () {
       try{
-        return !!scope.localStorage;
+        return !!window.localStorage;
       } catch(e) {
         return true; // SecurityError when referencing it means it exists
       }
@@ -171,7 +171,7 @@
     
     hasSessionStorage: function () {
       try{
-        return !!scope.sessionStorage;
+        return !!window.sessionStorage;
       } catch(e) {
         return true; // SecurityError when referencing it means it exists
       }
@@ -223,7 +223,7 @@
         'WMPlayer.OCX', // Windows media player
         'AgControl.AgControl', // Silverlight
         'Skype.Detection'];
-      if(this.ie_activex && scope.ActiveXObject){
+      if(this.ie_activex && window.ActiveXObject){
         // starting to detect plugins in IE
         return this.map(names, function(name){
           try{

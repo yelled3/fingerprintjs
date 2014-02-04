@@ -67,6 +67,29 @@ describe("Fingerprint", function(){
       expect(fp.getCanvasFingerprint).not.toHaveBeenCalled();
     });
 
+    it('Calculates fingerprint with ActiveX fingerprinting if it is said to do so', function(){
+      var fp = new Fingerprint({ie_activex: true});
+      spyOn(fp, 'isIE').andReturn(true);
+      spyOn(fp, 'getIEPluginsString');
+      fp.get();
+      expect(fp.getIEPluginsString).toHaveBeenCalled();
+    });
+
+
+    it('Does not try to use ActiveX fingerprinting when not told to(version 1)', function(){
+      var fp = new Fingerprint({ie_activex: false});
+      spyOn(fp, 'getIEPluginsString');
+      fp.get();
+      expect(fp.getIEPluginsString).not.toHaveBeenCalled();
+    });
+
+    it('Does not try to use ActiveX fingerprinting when not told to(version 2)', function(){
+      var fp = new Fingerprint();
+      spyOn(fp, 'getIEPluginsString');
+      fp.get();
+      expect(fp.getIEPluginsString).not.toHaveBeenCalled();
+    });
+
     it('Calculates fingerprint accessing screen resolution if it is said to do so', function(){
       var fp = new Fingerprint({screen_resolution: true});
       spyOn(fp, 'getScreenResolution');
