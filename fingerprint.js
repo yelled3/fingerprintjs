@@ -192,7 +192,7 @@
     },
 
     getPluginsString: function () {
-      if(this.isIE()){
+      if(this.isIE() && this.ie_activex){
         return this.getIEPluginsString();
       } else {
         return this.getRegularPluginsString();
@@ -209,21 +209,22 @@
     },
 
     getIEPluginsString: function () {
-      var names = ['ShockwaveFlash.ShockwaveFlash',//flash plugin
-        'AcroPDF.PDF', // Adobe PDF reader 7+
-        'PDF.PdfCtrl', // Adobe PDF reader 6 and earlier, brrr
-        'QuickTime.QuickTime', // QuickTime
-        // 5 versions of real players
-        'rmocx.RealPlayer G2 Control',
-        'rmocx.RealPlayer G2 Control.1',
-        'RealPlayer.RealPlayer(tm) ActiveX Control (32-bit)',
-        'RealVideo.RealVideo(tm) ActiveX Control (32-bit)',
-        'RealPlayer',
-        'SWCtl.SWCtl', // ShockWave player
-        'WMPlayer.OCX', // Windows media player
-        'AgControl.AgControl', // Silverlight
-        'Skype.Detection'];
-      if(this.ie_activex && window.ActiveXObject){
+      if(window.ActiveXObject){
+        var names = ['ShockwaveFlash.ShockwaveFlash',//flash plugin
+          'AcroPDF.PDF', // Adobe PDF reader 7+
+          'PDF.PdfCtrl', // Adobe PDF reader 6 and earlier, brrr
+          'QuickTime.QuickTime', // QuickTime
+          // 5 versions of real players
+          'rmocx.RealPlayer G2 Control',
+          'rmocx.RealPlayer G2 Control.1',
+          'RealPlayer.RealPlayer(tm) ActiveX Control (32-bit)',
+          'RealVideo.RealVideo(tm) ActiveX Control (32-bit)',
+          'RealPlayer',
+          'SWCtl.SWCtl', // ShockWave player
+          'WMPlayer.OCX', // Windows media player
+          'AgControl.AgControl', // Silverlight
+          'Skype.Detection'];
+          
         // starting to detect plugins in IE
         return this.map(names, function(name){
           try{
