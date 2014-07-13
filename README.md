@@ -1,6 +1,8 @@
+<p align="center">
 # fingerprintjs
-
-[![Build Status](https://travis-ci.org/Valve/fingerprintjs.svg)](https://travis-ci.org/Valve/fingerprintjs)
+<br/>
+<a href="https://travis-ci.org/Valve/fingerprintjs"><img src="http://img.shields.io/travis/Valve/fingerprintjs/master.svg?style=flat" /></a>
+</p>
 
 Fast browser fingerprint library. Written in pure JavaScript, no dependencies. 
 By default uses [Murmur hashing][murmur] and returns a 32bit integer number.
