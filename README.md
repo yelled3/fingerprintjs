@@ -1,5 +1,6 @@
 <p align="center">
-# fingerprintjs
+<h2>fingerprintjs</h2>
+<br/>
 <br/>
 <a href="https://travis-ci.org/Valve/fingerprintjs"><img src="http://img.shields.io/travis/Valve/fingerprintjs/master.svg?style=flat" /></a>
 </p>
