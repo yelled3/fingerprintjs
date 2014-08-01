@@ -3,6 +3,7 @@
 <br/>
 <br/>
 <a href="https://travis-ci.org/Valve/fingerprintjs"><img src="http://img.shields.io/travis/Valve/fingerprintjs/master.svg?style=flat" /></a>
+[![Gitter chat](https://badges.gitter.im/Valve/fingerprintjs.png)](https://gitter.im/Valve/fingerprintjs)
 </p>
 
 Fast browser fingerprint library. Written in pure JavaScript, no dependencies. 
