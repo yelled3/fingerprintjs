@@ -251,7 +251,7 @@
     },
 
     getScreenResolution: function () {
-       return (screen.height > screen.width) ? [screen.height, screen.width] : [screen.width : screen.height];
+       return (screen.height > screen.width) ? [screen.height, screen.width] : [screen.width, screen.height];
     },
 
     getCanvasFingerprint: function () {
