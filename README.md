@@ -9,7 +9,7 @@
 ## DEPRECATION WARNING                                                     
 
 No new development will happen in this repository. A new modern library   
-called [Fingerprintjs2](Valve/fingerprintjs2) is being developed.         
+called [Fingerprintjs2](https://github.com/Valve/fingerprintjs2) is being developed.         
 Please submit only bugs, no new feature requests here.                    
 If you want something to be implemented, please submit an issue in the    
 new repository.                                                           
