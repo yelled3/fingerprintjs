@@ -5,6 +5,17 @@
 <a href="https://gitter.im/Valve/fingerprintjs"><img src="https://badges.gitter.im/Valve/fingerprintjs.png"/></a>
 </p>
 
+...........................................................................
+# DEPRECATION WARNING                                                     |
+                                                                          |
+No new development will happen in this repository. A new modern library   |
+called [Fingerprintjs2](Valve/fingerprintjs2) is being developed.         |
+Please submit only bugs, no new feature requests here.                    |
+If you want something to be implemented, please submit an issue in the    |
+new repository.                                                           |
+                                                                          |
+..........................................................................|
+
 Fast browser fingerprint library. Written in pure JavaScript, no dependencies. 
 By default uses [Murmur hashing][murmur] and returns a 32bit integer number.
 Hashing function can be easily replaced.
